@@ -1,0 +1,90 @@
+/* Header.module.css */
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 16px;
+  position: relative;
+  width: 100%;
+  background-color: var(--commonfillwhite);
+  /* Убрана нижняя граница */
+}
+
+.logo {
+  color: var(--commontextdark);
+  font-family: "Inter", sans-serif;
+  font-size: 14px; /* Уменьшен размер текста */
+  line-height: 16px; /* Добавлен line-height */
+  font-weight: 400;
+  white-space: nowrap;
+  cursor: pointer; /* Добавлен курсор для интерактивности */
+  padding: 4px 8px; /* Добавлены отступы для лучшего UX */
+  border-radius: 4px; /* Скругление углов */
+  transition: background-color 0.2s;
+}
+
+.logo:hover {
+  background-color: rgba(0, 0, 0, 0.05); /* Эффект при наведении */
+}
+
+.navLinks {
+  align-items: center;
+  display: flex;
+  flex: 1;
+  gap: 16px;
+  justify-content: center;
+}
+
+.navLink {
+  text-decoration: none;
+}
+
+.activeNavItem {
+  background-color: #101011; /* Изменен цвет активного состояния */
+  border-radius: 8px;
+  padding: 4px 12px;
+}
+
+.navText {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 16px; /* Добавлен line-height */
+  font-weight: 400;
+}
+
+.inactiveNavText {
+  color: #4e4e4e;
+  font-size: 14px; /* Уменьшен размер текста */
+  line-height: 16px; /* Добавлен line-height */
+  transition: color 0.2s;
+}
+
+.inactiveNavText:hover {
+  color: var(--commontextdark);
+}
+
+.userAvatar {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  width: 93px;
+}
+
+.avatar {
+  background-color: var(--commontextdark);
+  border-radius: 16px;
+  height: 32px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatarText {
+  color: #ffffff;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+}

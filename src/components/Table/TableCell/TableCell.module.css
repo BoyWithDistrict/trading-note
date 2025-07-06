@@ -1,0 +1,65 @@
+/* TableCell.module.css */
+.cell {
+  padding: 8px;
+  height: 32px;
+  font-family: var(--font-family-inter);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--Common-Text-Dark);
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: 1px solid #DCDCDC;
+  transition: background-color 0.2s ease; /* Добавляем плавный переход */
+}
+
+.cell:hover {
+  background-color: #F8F8F8; /* Цвет при наведении */
+}
+
+.cell.numeric {
+  text-align: right;
+}
+
+.cell.center {
+  text-align: center;
+}
+
+.cell.profitPositive {
+  color: var(--Common-Text-Error);
+  font-weight: 500;
+}
+
+.cell.profitNegative {
+  color: var(--Common-Brand-brandColor1);
+  font-weight: 500;
+}
+
+.cell input,
+.cell select {
+  width: 100%;
+  padding: 2px 4px;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: transparent;
+}
+
+.cell.numeric input {
+  text-align: right;
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .cell {
+    color: var(--Common-Text-white);
+    border-bottom-color: #3A3A3A;
+  }
+  
+  .cell:hover {
+    background-color: #2A2A2A; /* Темный цвет при наведении для темной темы */
+  }
+}

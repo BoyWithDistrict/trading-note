@@ -1,0 +1,36 @@
+.button {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background: #2E2E2E; /* Чёрный цвет из Figma */
+  color: #FFFFFF; /* Белый текст */
+  border-radius: 12px; /* Скругление углов */
+  border: none;
+  padding: 12px 16px; /* Отступы */
+  gap: 8px; /* Расстояние между иконкой и текстом */
+  font-family: 'Inter', sans-serif; /* Шрифт из globals.css */
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background: #1E1E1E; /* Темнее на hover */
+}
+
+.button:active {
+  background: #171717; /* Ещё темнее при нажатии */
+}
+
+.button:disabled {
+  background: #9CA3AF; /* Серый для disabled */
+  cursor: not-allowed;
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+}

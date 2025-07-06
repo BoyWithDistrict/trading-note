@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "ticker": "XAUUSD+",
+    "strategy": "FOMO",
+    "entryTime": "2025-04-22T21:46:28",
+    "exitTime": "2025-05-22T14:52:14",
+    "direction": "Short",
+    "entryPrice": 3303.25,
+    "stopLoss": 3304.28,
+    "takeProfit": 3273.12,
+    "lot": 0.08,
+    "riskPercent": 3,
+    "profit": -712
+  },
+  {
+    "id": 1751063871955,
+    "ticker": "XAUUSD+",
+    "strategy": "",
+    "entryTime": "2025-06-27T22:37:48.932Z",
+    "exitTime": "2025-06-27T22:37:48.932Z",
+    "direction": "Short",
+    "entryPrice": 0,
+    "stopLoss": 0,
+    "takeProfit": 0,
+    "lot": 0.01,
+    "riskPercent": 1,
+    "profit": 0
+  },
+  {
+    "id": 1751063875878,
+    "ticker": "XAUUSD+",
+    "strategy": "",
+    "entryTime": "2025-06-27T22:37:51.923Z",
+    "exitTime": "2025-06-27T22:37:51.923Z",
+    "direction": "Short",
+    "entryPrice": 0,
+    "stopLoss": 0,
+    "takeProfit": 0,
+    "lot": 0.01,
+    "riskPercent": 1,
+    "profit": 0
+  },
+  {
+    "id": 1751064018880,
+    "ticker": "EURUSD",
+    "strategy": "",
+    "direction": "Short",
+    "entryPrice": 0,
+    "stopLoss": 0,
+    "takeProfit": 0,
+    "lot": 0.01,
+    "riskPercent": 1,
+    "entryTime": "2025-06-27T22:40:18.828Z",
+    "exitTime": "2025-06-27T22:40:18.828Z",
+    "profit": 0
+  }
+]

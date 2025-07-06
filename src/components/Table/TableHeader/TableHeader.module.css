@@ -1,0 +1,36 @@
+/* TableHeader.module.css */
+.header {
+  padding: 8px;
+  height: 32px;
+  font-family: var(--font-family-inter);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  color: var(--Common-Text-Dark);
+  text-align: left;
+  box-sizing: border-box;
+  border-bottom: 1px solid #DCDCDC; /* Добавлен разделитель */
+}
+
+.header.numeric {
+  text-align: right;
+}
+
+.headerContent {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.header.numeric .headerContent {
+  justify-content: flex-end;
+}
+
+/* Темная тема */
+@media (prefers-color-scheme: dark) {
+  .header {
+    color: var(--Common-Text-white);
+    border-bottom-color: #3A3A3A;
+  }
+}
