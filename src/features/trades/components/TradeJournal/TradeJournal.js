@@ -12,6 +12,7 @@ import CsvImporter from '@/features/trades/components/FileImporter'
 import PrimaryButton from '@/components/Button/PrimaryButton'
 import SecondaryButton from '@/components/Button/SecondaryButton'
 import TradeChart from '@/features/TradeChart'
+import TradingCalendar from '@/features/trades/components/TradingCalendar/TradingCalendar' // Импорт календаря
 
 export default function TradeJournal() {
   const trades = useLiveQuery(() => db.trades.toArray()) || []
@@ -123,7 +124,7 @@ export default function TradeJournal() {
       <div className="mb-6">
         <h1 className="text-2xl font-bold">Journal</h1>
         
-        {/* Tabs component */}
+        {/* Навигация по табам */}
         <div className="w-full px-4 pt-2">
           <div className="flex gap-8">
             {tabs.map((tab) => (
@@ -144,6 +145,7 @@ export default function TradeJournal() {
         </div>
       </div>
 
+      {/* Содержимое таба Trades */}
       {activeTab === 'journal' && (
         <>
           <Table>
@@ -208,30 +210,35 @@ export default function TradeJournal() {
         </>
       )}
 
+      {/* Содержимое таба Emotionality */}
       {activeTab === 'emotionality' && (
         <div className="py-8 text-center text-gray-500">
           Emotionality Content
         </div>
       )}
 
+      {/* Содержимое таба Patterns */}
       {activeTab === 'patterns' && (
         <div className="py-8 text-center text-gray-500">
           Patterns Content
         </div>
       )}
 
+      {/* Содержимое таба Plan - календарь */}
       {activeTab === 'plan' && (
-        <div className="py-8 text-center text-gray-500">
-          Plan Content
+        <div className="py-4">
+          <TradingCalendar />
         </div>
       )}
 
+      {/* Импорт данных */}
       {importMode && (
         <div className="mt-4 p-4 border rounded-lg bg-gray-50">
           <CsvImporter onImportComplete={handleImportComplete} />
         </div>
       )}
 
+      {/* Модальное окно добавления/редактирования сделки */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl">
@@ -248,6 +255,7 @@ export default function TradeJournal() {
         </div>
       )}
 
+      {/* Модальное окно графика сделки */}
       {selectedTradeForChart && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
           <TradeChart 
