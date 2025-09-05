@@ -1,0 +1,730 @@
+/* Основные стили менеджера скриншотов */
+.screenshotManager {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Inter', sans-serif;
+  background-color: #f8fafc;
+  min-height: calc(100vh - 80px);
+}
+
+.managerHeader {
+  margin-bottom: 30px;
+  text-align: center;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.managerHeader h1 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #1f2937;
+}
+
+.managerHeader p {
+  font-size: 16px;
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.foldersSection {
+  margin-bottom: 30px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.foldersHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.foldersHeader h2 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.foldersHeader button {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.foldersHeader button:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+.foldersList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.folderItem {
+  padding: 10px 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: white;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.folderItem:hover {
+  background-color: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+}
+
+.folderItem.active {
+  background-color: #eff6ff;
+  border-color: #3b82f6;
+  color: #1e40af;
+  font-weight: 500;
+}
+
+.folderItem::before {
+  content: "📁";
+  font-size: 16px;
+}
+
+.folderItem.active::before {
+  content: "📂";
+}
+
+.screenshotsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.screenshotItem {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.screenshotItem:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  border-color: #3b82f6;
+}
+
+.screenshotItem img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.screenshotItem:hover img {
+  transform: scale(1.05);
+}
+
+.screenshotInfo {
+  padding: 15px;
+}
+
+.screenshotName {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #374151;
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.screenshotDate {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 10px;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  color: #6b7280;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  margin: 20px 0;
+}
+
+.emptyStateIcon {
+  font-size: 48px;
+  color: #d1d5db;
+  margin-bottom: 15px;
+}
+
+.emptyState h3 {
+  margin: 0 0 10px 0;
+  color: #374151;
+  font-size: 20px;
+}
+
+.emptyState p {
+  margin: 0;
+  color: #6b7280;
+  max-width: 400px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Полноэкранный редактор */
+.fullscreenEditor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.editorHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #1f2937;
+  color: white;
+  border-bottom: 1px solid #374151;
+}
+
+.editorHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.editorTools {
+  display: flex;
+  gap: 10px;
+  padding: 15px 20px;
+  background-color: #374151;
+  color: white;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #4b5563;
+}
+
+.toolButton {
+  padding: 8px 16px;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  background-color: #1f2937;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
+.toolButton:hover {
+  background-color: #4b5563;
+  border-color: #6b7280;
+  transform: translateY(-1px);
+}
+
+.toolButton.active {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.toolOptions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.colorPicker {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: #1f2937;
+  padding: 5px;
+  border-radius: 6px;
+}
+
+.colorPicker span {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+  margin-right: 5px;
+}
+
+.colorOption {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.colorOption:hover {
+  transform: scale(1.1);
+}
+
+.colorOption.active {
+  border-color: white;
+  transform: scale(1.1);
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+.sizeSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #1f2937;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.sizeSelector span {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
+.sizeSelector select {
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #1f2937;
+  color: white;
+  border: 1px solid #4b5563;
+  cursor: pointer;
+}
+
+.sizeSelector select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.editorContent {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}
+
+.canvasContainer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  padding: 20px;
+  background-color: #2d3748;
+}
+
+.canvasContainer canvas {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background-color: white;
+  border: 1px solid #4b5563;
+  cursor: crosshair;
+}
+
+.editorSidebar {
+  width: 300px;
+  background-color: #1f2937;
+  padding: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-y: auto;
+  border-left: 1px solid #374151;
+}
+
+.editorMetadata {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.editorMetadata h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #e5e7eb;
+  border-bottom: 1px solid #374151;
+  padding-bottom: 10px;
+}
+
+.inputField,
+.textareaField,
+.selectField {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #4b5563;
+  border-radius: 6px;
+  background-color: #374151;
+  color: white;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.inputField:focus,
+.textareaField:focus,
+.selectField:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+}
+
+.textareaField {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.editorActions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 15px 20px;
+  background-color: #374151;
+  border-top: 1px solid #4b5563;
+}
+
+.cancelButton {
+  background-color: #6b7280;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.cancelButton:hover {
+  background-color: #4b5563;
+  transform: translateY(-1px);
+}
+
+.saveButton {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.saveButton:hover {
+  background-color: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* Text input modal */
+.textInputModal {
+  position: absolute;
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 250px;
+}
+
+.textInput {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.textInputModal button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.textInputModal button:first-of-type {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.textInputModal button:first-of-type:hover {
+  background-color: #2563eb;
+}
+
+.textInputModal button:last-of-type {
+  background-color: #6b7280;
+  color: white;
+}
+
+.textInputModal button:last-of-type:hover {
+  background-color: #4b5563;
+}
+
+/* Tool button disabled state */
+.toolButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toolButton:disabled:hover {
+  background-color: #1f2937;
+  transform: none;
+}
+
+/* Анимации */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.screenshotItem {
+  animation: slideIn 0.3s ease-out;
+}
+
+/* Кнопка удаления */
+.deleteButton {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  font-size: 14px;
+}
+
+.deleteButton:hover {
+  background-color: #dc2626;
+  transform: translateY(-1px);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 1024px) {
+  .editorContent {
+    flex-direction: column;
+  }
+  
+  .editorSidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid #374151;
+  }
+  
+  .toolOptions {
+    margin-left: 0;
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .screenshotsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .editorTools {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .toolOptions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .colorPicker {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .sizeSelector {
+    width: 100%;
+  }
+  
+  .sizeSelector select {
+    width: 100%;
+  }
+  
+  .textInputModal {
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%);
+    width: 80%;
+  }
+  
+  .managerHeader {
+    padding: 15px;
+  }
+  
+  .foldersSection {
+    padding: 15px;
+  }
+}
+
+/* Стили для состояния загрузки */
+.loadingState {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  color: #6b7280;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.loadingSpinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Стили для инструкций */
+.instructions {
+  background-color: #fef3c7;
+  border-left: 4px solid #f59e0b;
+  padding: 15px;
+  border-radius: 6px;
+  margin: 20px 0;
+  font-size: 14px;
+}
+
+.instructions h4 {
+  margin: 0 0 10px 0;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.instructions p {
+  margin: 0;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+/* Стили для уведомлений */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: white;
+  z-index: 10001;
+  animation: slideIn 0.3s ease-out;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification.success {
+  background-color: #10b981;
+}
+
+.notification.error {
+  background-color: #ef4444;
+}
+
+.notificationIcon {
+  font-size: 18px;
+}
+
+.fillSelector {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  background-color: #1f2937;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.fillSelector span {
+  font-size: 0.8rem;
+  color: #e5e7eb;
+}
+
+.fillSelector select {
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #1f2937;
+  color: white;
+  border: 1px solid #4b5563;
+  cursor: pointer;
+}
+
+.fillSelector select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}

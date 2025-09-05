@@ -9,8 +9,11 @@ export default function Header() {
   const pathname = usePathname()
   const router = useRouter()
 
-  // Проверяем активность главной страницы (и /journal)
+  // Проверяем активность страниц
   const isHomeActive = pathname === '/' || pathname === '/journal'
+  const isScreenshotsActive = pathname === '/screenshots'
+  const isSummaryActive = pathname === '/summary'
+  const isNotesActive = pathname === '/notes'
 
   return (
     <header className={styles.header}>
@@ -23,7 +26,7 @@ export default function Header() {
 
       <nav className={styles.navLinks}>
         <Link 
-          href="/" // Изменено с "/journal" на "/"
+          href="/"
           className={`${styles.navLink} ${isHomeActive ? styles.activeNavItem : ''}`}
         >
           <span className={isHomeActive ? styles.navText : styles.inactiveNavText}>
@@ -32,17 +35,30 @@ export default function Header() {
         </Link>
         
         <Link 
-          href="/summary" 
-          className={styles.navLink}
+          href="/screenshots" 
+          className={`${styles.navLink} ${isScreenshotsActive ? styles.activeNavItem : ''}`}
         >
-          <span className={styles.inactiveNavText}>Summary</span>
+          <span className={isScreenshotsActive ? styles.navText : styles.inactiveNavText}>
+            Screenshots
+          </span>
+        </Link>
+        
+        <Link 
+          href="/summary" 
+          className={`${styles.navLink} ${isSummaryActive ? styles.activeNavItem : ''}`}
+        >
+          <span className={isSummaryActive ? styles.navText : styles.inactiveNavText}>
+            Summary
+          </span>
         </Link>
         
         <Link 
           href="/notes" 
-          className={styles.navLink}
+          className={`${styles.navLink} ${isNotesActive ? styles.activeNavItem : ''}`}
         >
-          <span className={styles.inactiveNavText}>Notes of emotions</span>
+          <span className={isNotesActive ? styles.navText : styles.inactiveNavText}>
+            Notes of emotions
+          </span>
         </Link>
       </nav>
 

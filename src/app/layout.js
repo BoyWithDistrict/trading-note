@@ -1,12 +1,7 @@
 import Header from '@/components/Header/Header'
 import './globals.css'
-import { initDB } from '@/db'
 
 export default function RootLayout({ children }) {
-  if (typeof window !== 'undefined') {
-    initDB()
-  }
-
   return (
     <html lang="en">
       <head>

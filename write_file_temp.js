@@ -1,0 +1,48 @@
+const fs = require('fs');
+const filePath = 'src/features/trades/components/CalendarDay/CalendarDay.js';
+const content = import React from \'react\';
+import styles from \'./CalendarDay.module.css\';
+import { FiPlus } from \'react-icons/fi\';
+
+export default function CalendarDay({
+  day,
+  isCurrentMonth,
+  isToday,
+  events,
+  onDayClick,
+  onAddPlanClick,
+}) {
+  return (
+    <div
+      className={\${styles.calendarDay}  \}
+      onClick={() => onDayClick(day)}
+    >
+      {day ? (
+        <>
+          <div className={styles.header}>
+            <span className={styles.dateNumber}>{day.getDate()}</span>
+            <button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent day click when button is clicked
+                onAddPlanClick(day);
+              }}
+              className={styles.addPlanButton}
+            >
+              <FiPlus size={14} />
+            </button>
+          </div>
+          <div className={styles.eventsContainer}>
+            {events.map((event) => (
+              <div key={event.id} className={styles.eventItem}>
+                {event.title}
+              </div>
+            ))}
+          </div>
+        </>
+      ) : null}
+    </div>
+  );
+};
+
+fs.writeFileSync(filePath, content, 'utf8');
+console.log('File written successfully');

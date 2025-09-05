@@ -6,11 +6,14 @@ export default function PrimaryButton({
   disabled = false,
   className = '',
   icon: Icon,
+  fullWidth = false,
   ...props 
 }) {
+  const fullWidthClass = fullWidth ? styles.fullWidth : '';
+  
   return (
     <button
-      className={`${styles.button} ${className}`}
+      className={`${styles.button} ${className} ${fullWidthClass}`}
       onClick={onClick}
       disabled={disabled}
       {...props}

@@ -1,0 +1,178 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Выравнивание снизу */
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modalContainer {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh; /* Максимальная высота - 90% экрана */
+  overflow-y: auto; /* Автоматический скролл при переполнении */
+  transform: translateY(100%); /* Начальное положение - за пределами экрана */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.overlay.visible .modalContainer {
+  transform: translateY(0); /* Конечное положение - полностью видимо */
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e1e3e5;
+  position: sticky; /* Фиксированный заголовок при скролле */
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+.header {
+  color: #202223;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #5c5f62;
+  cursor: pointer;
+  line-height: 1;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeButton:hover {
+  background-color: #f6f6f7;
+}
+
+.contentContainer {
+  padding: 0 24px 24px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 200px; /* Минимальная высота формы */
+}
+
+.formRow {
+  display: flex;
+  gap: 16px;
+}
+
+.formGroup {
+  flex: 1;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: #202223;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.inputField {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #d2d5d8;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #202223;
+  font-size: 0.9375rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #8c9cff;
+  box-shadow: 0 0 0 2px rgba(140, 156, 255, 0.25);
+}
+
+.inputField::placeholder {
+  color: #999fa6;
+}
+
+.radioGroup {
+  display: flex;
+  gap: 20px;
+  margin-top: 4px;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #202223;
+  font-size: 0.9375rem;
+}
+
+.radioInput {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radioCustom {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #d2d5d8;
+  border-radius: 50%;
+  position: relative;
+  transition: border-color 0.2s;
+}
+
+.radioInput:checked + .radioCustom {
+  border-color: #5c6ac4;
+}
+
+.radioInput:checked + .radioCustom::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 10px;
+  height: 10px;
+  background: #5c6ac4;
+  border-radius: 50%;
+}
+
+.buttonsContainer {
+  margin-top: 24px;
+  padding-bottom: 20px; /* Дополнительный отступ снизу */
+}

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { FiX } from 'react-icons/fi'
@@ -29,7 +29,9 @@ export const initialTradeState = {
   riskPercent: '',
   profit: '',
   emotion: '',
-  createdAt: new Date().toISOString()
+  createdAt: new Date().toISOString(),
+  isPlanned: false, // Новое поле: была ли сделка по плану
+  planId: null // ID связанного плана
 }
 
 export default function TradeForm({ 
@@ -37,7 +39,7 @@ export default function TradeForm({
   onChange, 
   onSubmit, 
   onCancel,
-  isEditing = false 
+  availablePlans = [] // Список доступных планов
 }) {
   const [localTrade, setLocalTrade] = useState({
     ...trade,
@@ -65,6 +67,13 @@ export default function TradeForm({
     }))
   }
 
+  const handleCheckboxChange = (name, checked) => {
+    setLocalTrade(prev => ({ 
+      ...prev, 
+      [name]: checked 
+    }))
+  }
+
   const handleSubmit = () => {
     // Подготовка данных перед отправкой
     const tradeToSubmit = {
@@ -84,11 +93,11 @@ export default function TradeForm({
   }
 
   return (
-    <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-xl shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto relative">
         <div className="sticky top-0 bg-white p-4 border-b flex justify-between items-center z-10">
           <h2 className="text-xl font-semibold">
-            {isEditing ? 'Редактировать сделку' : 'Новая сделка'}
+            {trade.id ? 'Редактировать сделку' : 'Новая сделка'}
           </h2>
           <button 
             onClick={onCancel}
@@ -115,6 +124,8 @@ export default function TradeForm({
                 >
                   <option value="XAUUSD+">XAUUSD+</option>
                   <option value="EURUSD">EURUSD</option>
+                  <option value="BTCUSD">BTCUSD</option>
+                  <option value="ETHUSD">ETHUSD</option>
                 </select>
               </div>
 
@@ -246,6 +257,51 @@ export default function TradeForm({
             </div>
           </div>
 
+          {/* Блок "По плану" и выбора плана */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-3">
+                Сделка по плану
+              </label>
+              <div className="flex items-center">
+                <label className="inline-flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="isPlanned"
+                    checked={localTrade.isPlanned || false}
+                    onChange={(e) => handleCheckboxChange('isPlanned', e.target.checked)}
+                    className="sr-only peer"
+                  />
+                  <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                  <span className="ms-3 text-sm font-medium text-gray-900">
+                    {localTrade.isPlanned ? 'Да' : 'Нет'}
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            {localTrade.isPlanned && availablePlans.length > 0 && (
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Связать с планом
+                </label>
+                <select
+                  name="planId"
+                  value={localTrade.planId || ''}
+                  onChange={handleInputChange}
+                  className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">Не связывать</option>
+                  {availablePlans.map(plan => (
+                    <option key={plan.id} value={plan.id}>
+                      {plan.symbol} {plan.direction} ({plan.date})
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
+          </div>
+
           {/* Нижний блок */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
@@ -307,7 +363,7 @@ export default function TradeForm({
             onClick={handleSubmit}
             className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
           >
-            {isEditing ? 'Сохранить' : 'Добавить'}
+            {trade.id ? 'Сохранить' : 'Добавить'}
           </button>
         </div>
       </div>
